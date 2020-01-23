@@ -11,4 +11,31 @@ The problem is inspired by [How to train a Keras model to recognize text with va
 * The video frame height is the same as the image height.
 * Sample from the video footage a sequence of image frames as input to the neural net. To make the problem difficult, we use a low sample rate such that no two neighbouring frames in the sampled sequence share common pixels and some pixels from the original image are never captured in the samples. 
 
-![Problem definition by picture](https://raw.githubusercontent.com/liyinnbw/ML/master/SequentialOCR/problem_def.png)
+![Problem definition by picture](https://raw.githubusercontent.com/liyinnbw/ML/master/SequentialOCR/problem.png)
+
+## Neural Net Architectures
+A study on 3 possible neural net structures were carried out, all of them share the same CNN feature-extraction front-end, and the same CTC decoder, but different sequence processing layers. The sequence processing layers studied include MLP (Multi-layer Perceptron), Bi-GRU (Bidirectional GRU), and TCN (Temporal Convolutional Network). 
+
+![3 Neural Net Architectures](https://raw.githubusercontent.com/liyinnbw/ML/master/SequentialOCR/models.png)
+
+![An extended view of the common layers](https://raw.githubusercontent.com/liyinnbw/ML/master/SequentialOCR/neural_net_common.png)
+
+## Results Comparison
+### MLP
+* Total params: 51,148 (51,028 trainable + 120 non-trainable params)
+* Epoch = 150 SER= 0.39176470588235296 WER= 0.06745098039215686 CER= 0.01529411764705878
+![MLP result](https://raw.githubusercontent.com/liyinnbw/ML/master/SequentialOCR/result_mlp.png)
+
+### Bi-GRU
+* Total params: 78,668 (78,548 trainable + 120 non-trainable params)
+* Epoch = 103 SER= 0.12117647058823529 WER= 0.0203921568627451 CER= 0.003495798319327723
+![MLP result](https://raw.githubusercontent.com/liyinnbw/ML/master/SequentialOCR/result_bigru.png)
+
+### TCN
+* Total params: 78,668 (78,668 trainable + 120 non-trainable params)
+* Epoch = 100 SER= 0.10714285714285714 WER= 0.019246031746031747 CER= 0.0033673469387755037
+![MLP result](https://raw.githubusercontent.com/liyinnbw/ML/master/SequentialOCR/result_tcn.png)
+
+## Conclusion
+* Bi-GRU and TCN produced similar results in terms of sentence/word/character error rates. Both were better than the baseline MLP model which is expected. 
+* However, TCN used slightly more parameters to train but took shorter time (wall time) to converge than Bi-GRU. There is an argument in [this paper](https://arxiv.org/pdf/1609.03499.pdf) that this is generally true for TCN as compared to RNN.
