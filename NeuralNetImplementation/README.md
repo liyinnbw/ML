@@ -3,7 +3,7 @@
 My implementation of the neural network.
 
 ## Supported Neural Network Layers
-* FCLayer (Desne Layer)
+* FCLayer (Dense Layer)
 * Convolution
 * ReLU
 * Pooling
