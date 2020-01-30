@@ -6,4 +6,4 @@ My study on various neural net models for handling sequential image data. [use t
 ## [Text Classification](https://github.com/liyinnbw/ML/tree/master/TextClassification)
 My template for supervised text classification using various models. [use scikit-learn]
 ## [NeuralNet Implementation](https://github.com/liyinnbw/ML/tree/master/NeuralNetImplementation)
-My own implementation of CNN and RNN.
+My own implementation of some neural network layers.
